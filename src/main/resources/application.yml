@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:blog
+
+  h2:
+    console:
+      enabled: true
