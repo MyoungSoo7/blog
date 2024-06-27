@@ -6,6 +6,10 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,6 +27,14 @@ public class Article {
 
     @Column(name = "content", nullable = false)
     private String content;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @Builder
     public Article(String title, String content) {

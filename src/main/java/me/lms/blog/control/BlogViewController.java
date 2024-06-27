@@ -2,6 +2,8 @@ package me.lms.blog.control;
 
 import lombok.RequiredArgsConstructor;
 import me.lms.blog.dto.ArticleListViewResponse;
+import me.lms.blog.dto.ArticleViewResponse;
+import me.lms.blog.entity.Article;
 import me.lms.blog.service.BlogService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,14 @@ public class BlogViewController {
 
         model.addAttribute("articles",articles);
         return "articleList";
+    }
+
+
+    @GetMapping("/articles/{id}")
+    public String getArticle(@PathVariable Long id, Model model){
+        Article article = blogService.findById(id);
+        model.addAttribute("article", new ArticleViewResponse(article));
+        return "article";
     }
 
 }

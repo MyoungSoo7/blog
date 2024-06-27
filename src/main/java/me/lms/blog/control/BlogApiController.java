@@ -17,9 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class BlogApiController {
-
     private final BlogService blogService;
-
     @PostMapping("/api/article")
     public ResponseEntity<Article> addArticle(@RequestBody AddArticleRequest request) {
         Article savedArticle = blogService.save(request); 
@@ -52,7 +50,5 @@ public class BlogApiController {
         Article updatedArticle = blogService.update(id, request);
         return ResponseEntity.ok().body(updatedArticle);
     }
-
-
 
 }
