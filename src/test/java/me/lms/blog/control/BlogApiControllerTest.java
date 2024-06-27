@@ -75,7 +75,7 @@ class BlogApiControllerTest {
     }
 
 
-    @DisplayName("블로그 글 저장 테스트")
+    @DisplayName("블로그 글 조회 테스트")
     @Test
     public void findArticle() throws Exception{
         // given
@@ -93,25 +93,6 @@ class BlogApiControllerTest {
                 .andExpect(jsonPath("content").value(content));
 
     }
-
-
-    @DisplayName("블로그 글 삭제 테스트")
-    @Test
-    public void deleteArticle() throws Exception{
-        // given
-        final String url = "/api/article/{id}";
-        final String title = "제목";
-        final String content = "내용";
-        Article article = blogRepository.save(Article.builder().title(title).content(content).build());
-
-        // when
-        mockMvc.perform(delete(url, article.getId())).andExpect(status().isOk());
-
-        // then
-        List<Article> articles = blogRepository.findAll();
-        assertThat(articles).isEmpty();
-    }
-
 
     @DisplayName("블로그 글 수정 테스트")
     @Test
@@ -141,5 +122,26 @@ class BlogApiControllerTest {
         assertThat(updatedArticle.getContent()).isEqualTo(updateContent);
 
     }
+
+
+    @DisplayName("블로그 글 삭제 테스트")
+    @Test
+    void deleteArticle() throws Exception{
+        // given
+        final String url = "/api/article/{id}";
+        final String title = "제목";
+        final String content = "내용";
+        Article article = blogRepository.save(Article.builder().title(title).content(content).build());
+
+        // when
+        mockMvc.perform(delete(url, article.getId())).andExpect(status().isOk());
+
+        // then
+        List<Article> articles = blogRepository.findAll();
+        assertThat(articles).isEmpty();
+    }
+
+
+
 
 }

@@ -9,13 +9,14 @@ import me.lms.blog.entity.Article;
 import me.lms.blog.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@Controller
+
+
+
 public class BlogApiController {
     private final BlogService blogService;
     @PostMapping("/api/article")
